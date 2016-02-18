@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -o "/home/almu/RelojBinario2/Test_CLK_isim_beh.exe" -prj "/home/almu/RelojBinario2/Test_CLK_beh.prj" "work.Test_CLK" 

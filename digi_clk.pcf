@@ -1,0 +1,35 @@
+//! **************************************************************************
+// Written by: Map P.20131013 on Sun Feb 14 19:13:43 2016
+//! **************************************************************************
+
+SCHEMATIC START;
+PROHIBIT = SITE "P99";
+PROHIBIT = SITE "P43";
+PROHIBIT = SITE "P42";
+PROHIBIT = SITE "P39";
+PROHIBIT = SITE "P49";
+PROHIBIT = SITE "P48";
+PROHIBIT = SITE "P47";
+COMP "seconds<4>" LOCATE = SITE "P67" LEVEL 1;
+COMP "seconds<5>" LOCATE = SITE "P65" LEVEL 1;
+COMP "set_hour" LOCATE = SITE "P85" LEVEL 1;
+COMP "clk1" LOCATE = SITE "P89" LEVEL 1;
+NET "clk1_BUFGP/IBUFG" BEL "clk1_BUFGP/BUFG.GCLKMUX" USELOCALCONNECT;
+COMP "minutes<0>" LOCATE = SITE "P62" LEVEL 1;
+COMP "minutes<1>" LOCATE = SITE "P60" LEVEL 1;
+COMP "minutes<2>" LOCATE = SITE "P57" LEVEL 1;
+COMP "minutes<3>" LOCATE = SITE "P53" LEVEL 1;
+COMP "set_minutes" LOCATE = SITE "P83" LEVEL 1;
+COMP "minutes<4>" LOCATE = SITE "P40" LEVEL 1;
+COMP "minutes<5>" LOCATE = SITE "P35" LEVEL 1;
+COMP "hours<0>" LOCATE = SITE "P33" LEVEL 1;
+COMP "hours<1>" LOCATE = SITE "P26" LEVEL 1;
+COMP "hours<2>" LOCATE = SITE "P23" LEVEL 1;
+COMP "hours<3>" LOCATE = SITE "P18" LEVEL 1;
+COMP "seconds<0>" LOCATE = SITE "P86" LEVEL 1;
+COMP "seconds<1>" LOCATE = SITE "P84" LEVEL 1;
+COMP "seconds<2>" LOCATE = SITE "P79" LEVEL 1;
+COMP "seconds<3>" LOCATE = SITE "P70" LEVEL 1;
+NET "clk1_BUFGP/IBUFG" PERIOD = 31.25 ns HIGH 50%;
+SCHEMATIC END;
+

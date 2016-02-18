@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=/home/almu/RelojBinario2/digi_clk.ncd
+OUTFILE=/home/almu/RelojBinario2/digi_clk.bit
+FAMILY=Spartan3E
+PART=xc3s500e-4vq100
+WORKINGDIR=/home/almu/RelojBinario2
+LICENSE=WebPack
+USER_INFO=210848925_0_0_910
