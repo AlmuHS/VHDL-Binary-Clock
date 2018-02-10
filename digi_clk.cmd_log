@@ -1,0 +1,11 @@
+xst -intstyle ise -ifn "/home/almu/VHDL-Binary-Clock/digi_clk.xst" -ofn "/home/almu/VHDL-Binary-Clock/digi_clk.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc bpc3003-papilio_one-general.ucf -p xc3s500e-vq100-4 digi_clk.ngc digi_clk.ngd  
+map -intstyle ise -p xc3s500e-vq100-4 -cm area -ir off -pr off -c 100 -o digi_clk_map.ncd digi_clk.ngd digi_clk.pcf 
+xst -intstyle ise -ifn "/home/almu/VHDL-Binary-Clock/digi_clk.xst" -ofn "/home/almu/VHDL-Binary-Clock/digi_clk.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc bpc3003-papilio_one-general.ucf -p xc3s500e-vq100-4 digi_clk.ngc digi_clk.ngd  
+map -intstyle ise -p xc3s500e-vq100-4 -cm area -ir off -pr off -c 100 -o digi_clk_map.ncd digi_clk.ngd digi_clk.pcf 
+xst -intstyle ise -ifn "/home/almu/VHDL-Binary-Clock/digi_clk.xst" -ofn "/home/almu/VHDL-Binary-Clock/digi_clk.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc bpc3003-papilio_one-general.ucf -p xc3s500e-vq100-4 digi_clk.ngc digi_clk.ngd  
+map -intstyle ise -p xc3s500e-vq100-4 -cm area -ir off -pr off -c 100 -o digi_clk_map.ncd digi_clk.ngd digi_clk.pcf 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc bpc3003-papilio_one-general.ucf -p xc3s500e-vq100-4 digi_clk.ngc digi_clk.ngd  
+map -intstyle ise -p xc3s500e-vq100-4 -cm area -ir off -pr off -c 100 -o digi_clk_map.ncd digi_clk.ngd digi_clk.pcf 

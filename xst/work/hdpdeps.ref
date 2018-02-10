@@ -1,0 +1,7 @@
+V3 3
+FL /home/almu/VHDL-Binary-Clock/Reloj.vhd 2018/02/10.23:06:48 P.20131013
+EN work/digi_clk 1518300798 FL /home/almu/VHDL-Binary-Clock/Reloj.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/std_logic_arith 1381692177 \
+      PB ieee/STD_LOGIC_UNSIGNED 1381692179
+AR work/digi_clk/Behavioral 1518300799 \
+      FL /home/almu/VHDL-Binary-Clock/Reloj.vhd EN work/digi_clk 1518300798

@@ -51,7 +51,7 @@ NET seconds(1)    LOC="P84"  | IOSTANDARD=LVTTL;                             # A
 NET seconds(0)    LOC="P86"  | IOSTANDARD=LVTTL;                             # A15
 NET set_hour     LOC="P85"  | IOSTANDARD=LVCMOS33;                             # B0
 NET set_minutes     LOC="P83"  | IOSTANDARD=LVCMOS33;                             # B1
-#NET B(2)     LOC="P78"  | IOSTANDARD=LVCMOS33;                             # B2
+NET set_t     LOC="P78"  | IOSTANDARD=LVCMOS33;                             # B2
 #NET B(3)     LOC="P71"  | IOSTANDARD=LVCMOS33;                             # B3
 #NET B(4)     LOC="P68"  | IOSTANDARD=LVCMOS33;                             # B4
 #NET B(5)     LOC="P66"  | IOSTANDARD=LVCMOS33;                             # B5
