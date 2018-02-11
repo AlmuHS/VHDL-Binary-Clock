@@ -52,8 +52,9 @@ port (clk1 : in std_logic;
 end digi_clk;
 
 architecture Behavioral of digi_clk is
-	signal sec_clock,min_clock,hour_clock : integer range 0 to 59 :=0;
-	signal sec_set,min_set,hour_set : integer range 0 to 59 :=0;
+	signal sec_clock,min_clock : integer range 0 to 59 :=0;
+	signal hour_clock, hour_set : integer range 0 to 12 :=0;
+	signal sec_set,min_set : integer range 0 to 59 :=0;
 	signal count : integer := 1;
 	signal clk : std_logic :='0';
 	
@@ -75,7 +76,7 @@ begin
 		end if;
 	end process;
 
-	transitions: process(set_t)
+	transitions: process(set_t, state)
 		begin
 			case state is	
 				when clock => if(set_t = '1') then state <= set_time; end if;
@@ -108,13 +109,14 @@ end process;
 
 -- Logica combinacional (instantanea, no requiere de señal de reloj, queremos que las pulsaciones de 
 	-- los botones de "set_hour" y "set_min" se hagan instantaneamente y sean independientes del tiempo)
+sec_set <= 0 when (state = set_time);
 min_set <= min_set + 1 when (state = set_time) and (set_minutes = '1') and (min_set < 59) else 0;
 hour_set <= hour_set + 1 when (state = set_time) and (set_hour = '1') and (hour_set < 12) else 0;
 
 -- Asignamos a las salidas, una señal u otra dependiendo del estado en el que estemos
-seconds <= conv_std_logic_vector(sec_clock,6);
+seconds <= conv_std_logic_vector(sec_clock,6) when (state = clock) else conv_std_logic_vector(sec_set,6);
 minutes <= conv_std_logic_vector(min_clock,6) when (state = clock) else conv_std_logic_vector(min_set,6);
-hours <= conv_std_logic_vector(hour_clock,4) when (state = clock) else conv_std_logic_vector(hour_set,6);
+hours <= conv_std_logic_vector(hour_clock,4) when (state = clock) else conv_std_logic_vector(hour_set,4);
 
 
 end Behavioral;
