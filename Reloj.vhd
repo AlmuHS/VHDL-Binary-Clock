@@ -72,9 +72,9 @@ begin
 	hours <= conv_std_logic_vector(hour_clk,4) when(state = clock) else conv_std_logic_vector(hour_set,4);
 	set_enable <= set_t;
 
-	transitions: process(clk1)
+	transitions: process(clk, set_t)
 		begin
-			if(clk1'event and clk1='1') then
+			if(clk'event and clk='1') then
 				case state is	
 					when clock => if(set_t = '1') then state <= wait_toset; else state <= clock; end if;
 					when wait_toset => if(set_t = '0') then state <= set_time; else state <= wait_toset; end if;
@@ -85,7 +85,7 @@ begin
 		end if;
 	end process;
 
-	process(set_t)
+	process(set_hour, set_minutes, state, hour_clk, min_clk, hour_set, min_set)
 	begin
 		if(state = set_time) then
 	
@@ -94,6 +94,7 @@ begin
 					hour_set <= 0;
 				else hour_set <= hour_set + 1;
 				end if;
+			else hour_set <= hour_clk;
 			end if;
 			
 			if(set_minutes='1') then
@@ -101,7 +102,11 @@ begin
 					min_set <= min_set + 1;
 				else min_set <= 0;
 				end if;
+			else min_set <= min_clk;
 			end if;
+		else
+			hour_set <= hour_clk;
+			min_set <= min_clk;
 		end if;
 		
 	end process;
@@ -126,6 +131,7 @@ begin
 			if(sec_clk = 59) then
 				sec_clk <=0;
 				min_clk <= min_clk + 1;
+				
 				if(min_clk = 59) then
 					hour_clk <= hour_clk + 1;
 					min_clk <= 0;
