@@ -62,7 +62,7 @@ architecture Behavioral of digi_clk is
 	constant clock: mystates := "00";
 	constant set_time: mystates := "01";
 	
-	signal state: mystates;
+	signal state: mystates := clock;
 begin
 	 --clk generation.For 32 MHz clock this generates 1 Hz clock.
 	process(clk1)
@@ -79,31 +79,32 @@ begin
 	transitions: process(set_t, state)
 		begin
 			case state is	
-				when clock => if(set_t = '1') then state <= set_time; end if;
-				when set_time => if(set_t = '1') then state <= clock; end if;
-				when others =>
+				when clock => if(set_t = '1') then state <= set_time; else state <= clock; end if;
+				when set_time => if(set_t = '1') then state <= clock; else state <= set_time; end if;
+				when others => state <= state;
 			end case;
 	end process;
 			
 	process(clk)   --period of clk is 1 second.
 	begin
 			if(clk'event and clk='1' and state = clock) then
-				sec_clock <= sec_clock + 1;
-				
-				if(sec_clock = 59) then
-					sec_clock<=0;
-					min_clock <= min_clock + 1;
-					
-					if(min_clock = 59) then
-						hour_clock <= hour_clock + 1;
+				if(sec_clock < 59) then sec_clock <= sec_clock + 1;
+				else
+					sec_clock <= 0;
+					if(min_clock < 59) then min_clock <= min_clock + 1;
+					else
 						min_clock <= 0;
-						
-						if(hour_clock = 12) then
+						if(hour_clock < 12) then hour_clock <= hour_clock + 1;
+						else 
+							min_clock <= 0;
 							hour_clock <= 0;
+							sec_clock <= 0;
 						end if;
 						
 					end if;
+					
 				end if;
+				
 			end if;
 end process;
 
