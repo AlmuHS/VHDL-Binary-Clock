@@ -22,96 +22,9 @@
   <sourceproject xmlns="http://www.xilinx.com/XMLSchema" xil_pn:fileType="FILE_XISE" xil_pn:name="Binary_Clock.xise"/>
 
   <files xmlns="http://www.xilinx.com/XMLSchema">
-    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="_ngo"/>
-    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/map.xmsgs"/>
-    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
-    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/xst.xmsgs"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGDBUILD_LOG" xil_pn:name="digi_clk.bld"/>
-    <file xil_pn:fileType="FILE_CMD_LOG" xil_pn:name="digi_clk.cmd_log"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_LSO" xil_pn:name="digi_clk.lso"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="digi_clk.ngc"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGD" xil_pn:name="digi_clk.ngd"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGR" xil_pn:name="digi_clk.ngr"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="digi_clk.prj"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_STX" xil_pn:name="digi_clk.stx"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_REPORT" xil_pn:name="digi_clk.syr"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST" xil_pn:name="digi_clk.xst"/>
-    <file xil_pn:fileType="FILE_HTML" xil_pn:name="digi_clk_envsettings.html"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_MAP_REPORT" xil_pn:name="digi_clk_map.map" xil_pn:subbranch="Map"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_MAP_REPORT" xil_pn:name="digi_clk_map.mrp" xil_pn:subbranch="Map"/>
-    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="digi_clk_ngdbuild.xrpt"/>
-    <file xil_pn:fileType="FILE_HTML" xil_pn:name="digi_clk_summary.html"/>
-    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="digi_clk_xst.xrpt"/>
-    <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="webtalk_pn.xml"/>
-    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xlnx_auto_0_xdb"/>
-    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xst"/>
+    <file xil_pn:fileType="FILE_NCD" xil_pn:name="digi_clk_guide.ncd" xil_pn:origination="imported"/>
   </files>
 
-  <transforms xmlns="http://www.xilinx.com/XMLSchema">
-    <transform xil_pn:end_ts="1518300071" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1518300071">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1518300071" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="6643136392317465403" xil_pn:start_ts="1518300071">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1518300071" xil_pn:name="TRAN_regenerateCores" xil_pn:prop_ck="1026665881627480375" xil_pn:start_ts="1518300071">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1518300071" xil_pn:name="TRAN_SubProjectAbstractToPreProxy" xil_pn:start_ts="1518300071">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1518300071" xil_pn:name="TRAN_xawsTohdl" xil_pn:prop_ck="-459270015437369223" xil_pn:start_ts="1518300071">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1518300071" xil_pn:name="TRAN_SubProjectPreToStructuralProxy" xil_pn:prop_ck="-3893270297138737980" xil_pn:start_ts="1518300071">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1518300071" xil_pn:name="TRAN_platgen" xil_pn:prop_ck="-8923444906565404735" xil_pn:start_ts="1518300071">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1518300804" xil_pn:in_ck="119773919498476" xil_pn:name="TRANEXT_xstsynthesize_spartan3e" xil_pn:prop_ck="115304593041780980" xil_pn:start_ts="1518300793">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="WarningsGenerated"/>
-      <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
-      <outfile xil_pn:name="digi_clk.lso"/>
-      <outfile xil_pn:name="digi_clk.ngc"/>
-      <outfile xil_pn:name="digi_clk.ngr"/>
-      <outfile xil_pn:name="digi_clk.prj"/>
-      <outfile xil_pn:name="digi_clk.stx"/>
-      <outfile xil_pn:name="digi_clk.syr"/>
-      <outfile xil_pn:name="digi_clk.xst"/>
-      <outfile xil_pn:name="digi_clk_xst.xrpt"/>
-      <outfile xil_pn:name="webtalk_pn.xml"/>
-      <outfile xil_pn:name="xst"/>
-    </transform>
-    <transform xil_pn:end_ts="1518300119" xil_pn:in_ck="6305833317719653390" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="2969309414401751694" xil_pn:start_ts="1518300119">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1518301061" xil_pn:in_ck="2805515343477001034" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="-3117814362658931260" xil_pn:start_ts="1518301056">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="_ngo"/>
-      <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
-      <outfile xil_pn:name="digi_clk.bld"/>
-      <outfile xil_pn:name="digi_clk.ngd"/>
-      <outfile xil_pn:name="digi_clk_ngdbuild.xrpt"/>
-    </transform>
-    <transform xil_pn:end_ts="1518301065" xil_pn:in_ck="2805515343477001035" xil_pn:name="TRANEXT_map_spartan3" xil_pn:prop_ck="-1697458369411087007" xil_pn:start_ts="1518301061">
-      <status xil_pn:value="FailedRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="_xmsgs/map.xmsgs"/>
-      <outfile xil_pn:name="digi_clk_map.map"/>
-      <outfile xil_pn:name="digi_clk_map.mrp"/>
-    </transform>
-  </transforms>
+  <transforms xmlns="http://www.xilinx.com/XMLSchema"/>
 
 </generated_project>

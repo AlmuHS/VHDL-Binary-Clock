@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2018-02-10T23:17:31</DateModified>
+  <DateModified>2018-02-11T01:40:04</DateModified>
   <ModuleName>digi_clk</ModuleName>
-  <SummaryTimeStamp>Unknown</SummaryTimeStamp>
+  <SummaryTimeStamp>2018-02-11T01:39:08</SummaryTimeStamp>
   <SavedFilePath>/home/almu/VHDL-Binary-Clock/iseconfig/digi_clk.xreport</SavedFilePath>
   <ImplementationReportsDirectory>/home/almu/VHDL-Binary-Clock/</ImplementationReportsDirectory>
   <DateInitialized>2018-02-10T23:13:09</DateInitialized>
