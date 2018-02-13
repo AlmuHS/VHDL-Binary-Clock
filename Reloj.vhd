@@ -39,12 +39,13 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
+USE ieee.numeric_std.ALL; 
 
 entity digi_clk is
 port (clk1 : in std_logic;
-      seconds : out std_logic_vector(5 downto 0);
-      minutes : out std_logic_vector(5 downto 0);
-      hours : out std_logic_vector(3 downto 0);
+      seconds : inout std_logic_vector(5 downto 0);
+      minutes : inout std_logic_vector(5 downto 0);
+      hours : inout std_logic_vector(3 downto 0);
 		set_hour: in std_logic;
 		set_minutes: in std_logic;
 		set_t: in std_logic;
@@ -108,7 +109,6 @@ begin
 			hour_set <= hour_clk;
 			min_set <= min_clk;
 		end if;
-		
 	end process;
 
 	 --clk generation.For 32 MHz clock this generates 1 Hz clock.
@@ -125,18 +125,19 @@ begin
 
 	process(clk)   --period of clk is 1 second.
 	begin
-
-		if(clk'event and clk='1') then
-			sec_clk <= sec_clk + 1;
-			if(sec_clk = 59) then
-				sec_clk <=0;
-				min_clk <= min_clk + 1;
+		if(clk'event and clk='1' and state = clock) then
+ 			hour_clk <= conv_integer(hours);
+			min_clk <= conv_integer(minutes);
+		
+			if(sec_clk < 59) then sec_clk <= sec_clk + 1;
+			else 
+				sec_clk <= 0;
 				
-				if(min_clk = 59) then
-					hour_clk <= hour_clk + 1;
+				if(min_clk < 59) then min_clk <= min_clk + 1;
+				else 
 					min_clk <= 0;
-					if(hour_clk = 12) then
-						hour_clk <= 0;
+					if(hour_clk < 12) then hour_clk <= hour_clk + 1;
+					else hour_clk <= 0;
 					end if;
 				end if;
 			end if;
