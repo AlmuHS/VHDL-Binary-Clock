@@ -1,8 +1,0 @@
-INTSTYLE=ise
-INFILE=/home/almu/VHDL-Binary-Clock/digi_clk.ncd
-OUTFILE=/home/almu/VHDL-Binary-Clock/digi_clk.bit
-FAMILY=Spartan3E
-PART=xc3s500e-4vq100
-WORKINGDIR=/home/almu/VHDL-Binary-Clock
-LICENSE=WebPack
-USER_INFO=210848925_0_0_910
