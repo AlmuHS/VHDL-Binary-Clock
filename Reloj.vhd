@@ -83,9 +83,18 @@ begin
 					when wait_toclock => if(set_t = '0') then state <= clock; else state <= wait_toclock; end if;
 					when others => state <= clock;
 				end case;
-		end if;
+			else
+				case state is	
+					when clock => clock;
+					when wait_toset => wait_toset;
+					when set_time => set_time;
+					when wait_toclock => wait_toclock;
+					when others => state <= clock;
+				end case;
+			end if;
 	end process;
 
+	--TODO: Refactor to sincronous process
 	process(set_hour, set_minutes, state, hour_clk, min_clk, hour_set, min_set)
 	begin
 		if(state = set_time) then
@@ -116,18 +125,21 @@ begin
 	begin
 		if(clk1'event and clk1='1') then
 			count <=count+1;
-			if(count = 16000000) then
-				clk <= not clk;
-				count <=1;
+			--if(count = 16000000) then
+			--	clk <= not clk;
+			--	count <=1;
+			if(count = 31999999) then
+				count <= 0;			
 			end if;
 		end if;
 	end process;
 
-	process(clk)   --period of clk is 1 second.
+	process(clk1)   --period of clk is 1 second.
 	begin
 		if(clk'event and clk='1' and state = clock) then
- 			hour_clk <= conv_integer(hours);
-			min_clk <= conv_integer(minutes);
+			if(count = 0) then	
+ 				hour_clk <= conv_integer(hours);
+				min_clk <= conv_integer(minutes);
 		
 			if(sec_clk < 59) then sec_clk <= sec_clk + 1;
 			else 
