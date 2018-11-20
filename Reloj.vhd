@@ -73,9 +73,9 @@ begin
 	hours <= conv_std_logic_vector(hour_clk,4) when(state = clock) else conv_std_logic_vector(hour_set,4);
 	set_enable <= set_t;
 
-	transitions: process(clk, set_t)
+	transitions: process(clk1, set_t)
 		begin
-			if(clk'event and clk='1') then
+			if(clk1'event and clk1='1') then
 				case state is	
 					when clock => if(set_t = '1') then state <= wait_toset; else state <= clock; end if;
 					when wait_toset => if(set_t = '0') then state <= set_time; else state <= wait_toset; end if;
@@ -94,40 +94,12 @@ begin
 			end if;
 	end process;
 
-	--TODO: Refactor to sincronous process
-	process(set_hour, set_minutes, state, hour_clk, min_clk, hour_set, min_set)
-	begin
-		if(state = set_time) then
-	
-			if(set_hour='1') then
-				if(hour_set = 12) then
-					hour_set <= 0;
-				else hour_set <= hour_set + 1;
-				end if;
-			else hour_set <= hour_clk;
-			end if;
-			
-			if(set_minutes='1') then
-				if(min_set < 59) then
-					min_set <= min_set + 1;
-				else min_set <= 0;
-				end if;
-			else min_set <= min_clk;
-			end if;
-		else
-			hour_set <= hour_clk;
-			min_set <= min_clk;
-		end if;
-	end process;
-
 	 --clk generation.For 32 MHz clock this generates 1 Hz clock.
 	process(clk1)
 	begin
 		if(clk1'event and clk1='1') then
 			count <=count+1;
-			--if(count = 16000000) then
-			--	clk <= not clk;
-			--	count <=1;
+
 			if(count = 31999999) then
 				count <= 0;			
 			end if;
@@ -141,20 +113,50 @@ begin
  				hour_clk <= conv_integer(hours);
 				min_clk <= conv_integer(minutes);
 		
-			if(sec_clk < 59) then sec_clk <= sec_clk + 1;
-			else 
-				sec_clk <= 0;
-				
-				if(min_clk < 59) then min_clk <= min_clk + 1;
+				if(sec_clk < 59) then sec_clk <= sec_clk + 1;
 				else 
-					min_clk <= 0;
-					if(hour_clk < 12) then hour_clk <= hour_clk + 1;
-					else hour_clk <= 0;
+					sec_clk <= 0;
+					
+					if(min_clk < 59) then min_clk <= min_clk + 1;
+					else 
+						min_clk <= 0;
+						if(hour_clk < 12) then hour_clk <= hour_clk + 1;
+						else hour_clk <= 0;
+						end if;
 					end if;
 				end if;
 			end if;
 		end if;
+	end process;
 
-end process;
+	process(set_hour, clk1)
+	begin
+		if(clk1='1' and clk1'event) then	
+			if(set_hour='1' and state = set_time) then
+				if(count = 0 or count = 16000000) then
+					if(hour_set = 12) then
+						hour_set <= 0;
+					else hour_set <= hour_set + 1;
+					end if;
+				end if;
+			end if;
+		end if;
+	end process;
+	
+	process(set_minutes, clk1)
+	begin
+		if(clk1='1' and clk1'event) then
+			if(set_minutes='1' and state = set_time) then
+				if(count = 0 or count = 16000000) then
+					if(min_set < 59) then
+						min_set <= min_set + 1;
+					else min_set <= 0;
+					end if;
+				end if;
+			end if;
+		end if;
+	end process;
+
+
 
 end Behavioral;
