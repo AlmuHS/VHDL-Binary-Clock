@@ -42,7 +42,7 @@ use ieee.std_logic_unsigned.all;
 USE ieee.numeric_std.ALL; 
 
 entity digi_clk is
-port (clk1 : in std_logic;
+port (clk : in std_logic;
       seconds : inout std_logic_vector(5 downto 0);
       minutes : inout std_logic_vector(5 downto 0);
       hours : inout std_logic_vector(3 downto 0);
@@ -57,7 +57,6 @@ architecture Behavioral of digi_clk is
 	signal min_set, sec_clk, min_clk: integer range 0 to 60 := 0;
 	signal hour_set, hour_clk: integer range 0 to 12 := 0; 
 	signal count : integer := 1;
-	signal clk : std_logic :='0';
 	
 	constant clock: std_logic := '0';
 	constant set_time: std_logic := '1';
@@ -65,17 +64,15 @@ architecture Behavioral of digi_clk is
 	signal state: std_logic := clock;
 	
 begin
-	
-
-	
+		
 	seconds <= conv_std_logic_vector(sec_clk,6) when(state = clock) else conv_std_logic_vector(0,6);
 	minutes <= conv_std_logic_vector(min_clk,6) when(state = clock and min_clk > min_set) else  conv_std_logic_vector(min_set, 6);
 	hours <= conv_std_logic_vector(hour_clk,4) when(state = clock and hour_clk > hour_set) else conv_std_logic_vector(hour_set,4);
-	set_enable <= state;
+	set_enable <= set_t;
 
-	transitions: process(set_t)
+	transitions: process(set_t, clk)
 	begin
-		if(set_t = '1') then
+		if(clk'event and clk='1' and set_t='1') then
 			case state is
 				when clock => state <= set_time;
 				when set_time => state <= clock;
@@ -83,10 +80,11 @@ begin
 			end case;
 		end if;
 	end process;
-
-	process(set_hour, set_minutes, state)
+	
+	process(set_hour, set_minutes, state, clk)
 	begin
-		if(state = set_time) then
+		if(clk'event and clk='1' and state = set_time) then
+			
 			if(set_hour = '1') then
 				if(hour_set = 11) then
 					hour_set <= 0;
@@ -101,40 +99,38 @@ begin
 				else min_set <= 0;
 				end if;
 			end if;
+			
 		end if;
 	end process;
 
-	 --clk generation.For 32 MHz clock this generates 1 Hz clock.
-	process(clk1)
-	begin
-		if(clk1'event and clk1='1') then
-			count <=count+1;
-			if(count = 16000000) then
-				clk <= not clk;
-				count <=1;
-			end if;
-		end if;
-	end process;
 
 	process(clk)   --period of clk is 1 second.
 	begin
 		if(clk'event and clk='1') then
-			min_clk <= conv_integer(minutes);
-			hour_clk <= conv_integer(hours);
-		
-			if(sec_clk < 59) then 
-				sec_clk <= sec_clk + 1;
-			else 
-				sec_clk <= 0;
-				
-				if(min_clk < 59) then min_clk <= min_clk + 1;
+			count <= count + 1;
+			
+			if(count = 16000000) then
+
+				count <= 0;
+				min_clk <= conv_integer(minutes);
+				hour_clk <= conv_integer(hours);
+			
+				if(sec_clk < 59) then 
+					sec_clk <= sec_clk + 1;
 				else 
-					min_clk <= 0;
-					if(hour_clk < 12) then 
-						hour_clk <= hour_clk + 1;
-					else hour_clk <= 0;
+					sec_clk <= 0;
+					
+					if(min_clk < 59) then min_clk <= min_clk + 1;
+					else 
+						min_clk <= 0;
+						if(hour_clk < 12) then 
+							hour_clk <= hour_clk + 1;
+						else hour_clk <= 0;
+						end if;
 					end if;
-				end if;
+				
+			end if;
+			
 			end if;
 		end if;
 end process;
